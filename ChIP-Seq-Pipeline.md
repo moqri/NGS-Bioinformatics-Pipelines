@@ -7,7 +7,7 @@ module add bowtie2
 module load samtools
 module load sambamba
 
-f=<fastq filename>
+f=<fastq filename prefix> # FASTQ for IP or Control
 p=<number of processors>
 index=<bowtie2 index path>
 
