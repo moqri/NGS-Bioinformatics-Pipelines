@@ -22,5 +22,6 @@ Do the same for the input $c
 
 ```
 module add macs2   
+c=<control BAM filename>
 macs2 callpeak -t "$f"_d.bam -c "$c"_f.bam -f BAMPE -g hs -B -n $f --outdir macs2
 ```
