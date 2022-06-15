@@ -21,5 +21,6 @@ sambamba view -h -t $p -f bam -F "[XS] == null and not unmapped  and not duplica
 Do the same for the input $c
 
 ```
+module add macs2   
 #macs2 callpeak -t $p "$f"_d.bam -c "$c".bam -f BAM -g mm -n $f 
 ```
