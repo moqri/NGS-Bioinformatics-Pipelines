@@ -24,7 +24,7 @@ Then run peack calling
 
 ```
 module add macs2   
-c=<control BAM filename>
+c=<control prefix>
 macs2 callpeak -t "$f"_d.bam -c "$c"_d.bam -f BAMPE -g hs -B -n $f --outdir $f
 bedGraphToBigWig $f.bdg chrom.sizes $f.bw
 ```
