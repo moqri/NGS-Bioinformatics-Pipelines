@@ -1,4 +1,6 @@
 
+Map IP and Control samples
+
 ```
 module add trim-galore/0.6.7 
 module add bowtie2 
@@ -18,7 +20,7 @@ sambamba view -h -t $p -f bam -F "[XS] == null and not unmapped  and not duplica
 
 ```
 
-Do the same for the input $c
+Then run peack calling
 
 ```
 module add macs2   
