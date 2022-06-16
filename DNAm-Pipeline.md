@@ -6,7 +6,7 @@ module add htslib
 module add samtools
 ```
 ```
-f=<fastq filename prefix> # FASTQ for IP or Control
+f=<fastq filename prefix>
 p=<number of processors>
 ind=<abismal index file>
 ref_genome=<reference genome>
