@@ -1,4 +1,12 @@
 ```
+module add trim-galore/0.6.7 
+module load samtools
+```
+```
+f=<fastq filename prefix> # FASTQ for IP or Control
+p=<number of processors>
+```
+```
 trim_galore --paired -q 0 --length 0 "$f"_1.fastq.gz  "$f"_2.fastq.gz -j 48
 abismal -i $ind "$f"_1_val_1.fq.gz "$f"_2_val_2.fq.gz -t 48 -v | samtools view -b > "$f".bam 
 format_reads -f abismal "$f".bam -o "$f"_f.sam 
