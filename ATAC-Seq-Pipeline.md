@@ -19,7 +19,7 @@ fasterq-dump $f -p "-e$p"
 ### Single reads
 ```
 trim_galore -q 0 --length 0 "$f".fastq -j $p
-bowtie2 -q -x $index -1 "$f"_R1_001_val_1.fq.gz -2 "$f"_R1_001_val_1.fq.gz -S $f.sam --local --no-unal --very-sensitive -X 2000 -p $p
+bowtie2 -q -x $index -U "$f"_trimmed.fq  -S $f.sam --local --no-unal --very-sensitive -p $p
 ```
 ### Paied reads
 ```
