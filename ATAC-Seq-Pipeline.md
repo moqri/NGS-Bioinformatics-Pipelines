@@ -1,3 +1,5 @@
+Source: https://informatics.fas.harvard.edu/atac-seq-guidelines.html
+
 ## Mapping
 ```
 module add sratoolkit
