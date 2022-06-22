@@ -1,7 +1,7 @@
 Source: 
 * https://yiweiniu.github.io/blog/2019/03/ATAC-seq-data-analysis-from-FASTQ-to-peaks/
 * https://informatics.fas.harvard.edu/atac-seq-guidelines.html
-
+## Set up
 ```
 module add sratoolkit
 module add trim-galore/0.6.7 
