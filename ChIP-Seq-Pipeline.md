@@ -1,4 +1,4 @@
-## Mapiing
+## Mapping
 Map IP and Control samples
 
 ```
