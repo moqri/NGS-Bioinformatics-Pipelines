@@ -6,6 +6,7 @@ module add trim-galore/0.6.7
 module add bowtie2 
 module load samtools
 module load sambamba
+module add macs2   
 
 f=<fastq filename prefix> # FASTQ for IP or Control
 p=<number of processors>
@@ -23,7 +24,6 @@ sambamba view -h -t $p -f bam -F "[XS] == null and not unmapped  and not duplica
 Then run peack calling
 
 ```
-module add macs2   
 c=<control prefix>
 macs2 callpeak -t "$f"_d.bam -c "$c"_d.bam -f BAMPE -g hs -B -n $f --outdir $f
 bedGraphToBigWig $f.bdg chrom.sizes $f.bw
