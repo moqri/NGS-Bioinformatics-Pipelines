@@ -15,9 +15,18 @@ p=<number of processors>
 index=<bowtie2 index path>
 
 fasterq-dump $f -p "-e$p"
+```
+### Single reads
+```
+trim_galore -q 0 --length 0 "$f".fastq -j $p
+bowtie2 -q -x $index -1 "$f"_R1_001_val_1.fq.gz -2 "$f"_R1_001_val_1.fq.gz -S $f.sam --local --no-unal --very-sensitive -X 2000 -p $p
+```
+### Paied reads
+```
 trim_galore --paired -q 0 --length 0 "$f"_R1_001.fastq.gz  "$f"_R2_001.fastq.gz -j $p
 bowtie2 -q -x $index -1 "$f"_R1_001_val_1.fq.gz -2 "$f"_R1_001_val_1.fq.gz -S $f.sam --local --no-unal --very-sensitive -X 2000 -p $p
-
+```
+```
 samtools view -bS $f.sam > $f.bam -@ $p
 samtools sort -n $f.bam > "$f"_n.bam -@ 16
 ```
