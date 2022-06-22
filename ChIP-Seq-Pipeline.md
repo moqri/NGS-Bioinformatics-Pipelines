@@ -5,8 +5,8 @@ Map IP and Control samples
 module add sratoolkit
 module add trim-galore/0.6.7 
 module add bowtie2 
-module load samtools
-module load sambamba
+module add samtools
+module add sambamba
 module add macs2   
 
 f=<fastq filename prefix> # FASTQ for IP or Control
