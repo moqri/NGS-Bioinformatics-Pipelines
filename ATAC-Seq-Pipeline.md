@@ -28,5 +28,5 @@ Genrich  -t "$s"_n.bam -o $s.bed -j  -y  -r  -e chrM  -v
 ```
 ## Consencus
 ```
-mspc -i p*.bed -r bio -w 1e-4 -s 1e-8
+mspc -i *.bed -r bio -w 1e-4 -s 1e-8
 ```
