@@ -1,3 +1,4 @@
+## Mapping
 ```
 module add sratoolkit
 module add trim-galore/0.6.7 
@@ -15,6 +16,10 @@ ref_genome=<reference genome>
 fasterq-dump $f
 trim_galore --paired -q 0 --length 0 "$f"_1.fastq.gz  "$f"_2.fastq.gz -j $p
 abismal -i $ind "$f"_1_val_1.fq.gz "$f"_2_val_2.fq.gz -t $p -v | samtools view -b > "$f".bam 
+```
+
+## Calculating DNAm levels
+```
 format_reads -f abismal "$f".bam -o "$f"_f.sam 
 samtools sort -O bam -o "$f"_fs.bam "$f"_f.sam -@ 16 -T tmp # -m 8G 
 duplicate-remover -S "$f"_stat.txt "$f"_fs.bam "$f"_fsd.sam
