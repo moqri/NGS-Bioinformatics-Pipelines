@@ -28,12 +28,10 @@ bowtie2 -q -x $index -U "$f"_trimmed.fq  -S $f.sam --local --no-unal --very-sens
 trim_galore --paired -q 0 --length 0 "$f"_R1_001.fastq.gz  "$f"_R2_001.fastq.gz -j $p
 bowtie2 -q -x $index -1 "$f"_R1_001_val_1.fq.gz -2 "$f"_R1_001_val_1.fq.gz -S $f.sam --local --no-unal --very-sensitive -X 2000 -p $p
 ```
+## Peack calling
 ```
 samtools view -bS $f.sam > $f.bam -@ $p
 samtools sort -n $f.bam > "$f"_n.bam -@ 16
-```
-## Peack calling
-```
 Genrich  -t "$f"_n.bam -o $f.bed -j  -y  -r  -e chrM  -v
 ```
 ## Consencus
