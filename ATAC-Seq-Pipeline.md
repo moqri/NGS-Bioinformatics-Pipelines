@@ -1,4 +1,6 @@
-Source: https://informatics.fas.harvard.edu/atac-seq-guidelines.html
+Source: 
+* https://yiweiniu.github.io/blog/2019/03/ATAC-seq-data-analysis-from-FASTQ-to-peaks/
+* https://informatics.fas.harvard.edu/atac-seq-guidelines.html
 
 ## Mapping
 ```
