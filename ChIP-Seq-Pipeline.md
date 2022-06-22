@@ -1,4 +1,4 @@
-
+## Mapiing
 Map IP and Control samples
 
 ```
@@ -21,8 +21,7 @@ sambamba view -h -t $p -f bam -F "[XS] == null and not unmapped  and not duplica
 
 ```
 
-Then run peack calling
-
+## Peak-calling
 ```
 c=<control prefix>
 macs2 callpeak -t "$f"_d.bam -c "$c"_d.bam -f BAMPE -g hs -B -n $f --outdir $f
