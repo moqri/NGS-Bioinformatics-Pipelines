@@ -20,7 +20,6 @@ bowtie2 -q -x $index -1 "$f"_R1_001_val_1.fq.gz -2 "$f"_R1_001_val_1.fq.gz -S $f
 
 samtools view -h -S -b -o $f.bam $f.sam -@ $p
 sambamba sort -o "$f"_s.bam $f.bam -t $p
-
 ```
 
 ## Peack calling
