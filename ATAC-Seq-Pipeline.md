@@ -7,8 +7,8 @@ Source:
 module add sratoolkit
 module add trim-galore/0.6.7 
 module add bowtie2 
-module load samtools
-module load sambamba
+module add samtools
+module add sambamba
 
 f=<fastq filename prefix> # FASTQ for IP or Control
 p=<number of processors>
