@@ -24,7 +24,7 @@ sambamba sort -o "$f"_s.bam $f.bam -t $p
 
 ## Peack calling
 ```
-Genrich  -t "$s"_n.bam -o $s.bed -j  -y  -r  -e chrM  -v
+Genrich  -t "$f"_n.bam -o $f.bed -j  -y  -r  -e chrM  -v
 ```
 ## Consencus
 ```
