@@ -26,7 +26,7 @@ bowtie2 -q -x $index -U "$f"_trimmed.fq  -S $f.sam --local --no-unal --very-sens
 ### Paied reads
 ```
 trim_galore --paired -q 0 --length 0 "$f"_R1_001.fastq.gz  "$f"_R2_001.fastq.gz -j $p
-bowtie2 -q -x $index -1 "$f"_R1_001_val_1.fq.gz -2 "$f"_R1_001_val_1.fq.gz -S $f.sam --local --no-unal --very-sensitive -X 2000 -p $p
+bowtie2 -q -x $index -1 "$f"_R1_001_val_1.fq.gz -2 "$f"_R2_001_val_1.fq.gz -S $f.sam --local --no-unal --very-sensitive -X 2000 -p $p
 ```
 ## Peack calling
 ```
