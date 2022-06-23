@@ -1,7 +1,10 @@
 Source: 
 * https://yiweiniu.github.io/blog/2019/03/ATAC-seq-data-analysis-from-FASTQ-to-peaks/
 * https://informatics.fas.harvard.edu/atac-seq-guidelines.html
+
 ## Set up
+* Install [Genrich](https://github.com/jsh58/Genrich) and [MSPS](https://genometric.github.io/MSPC/)
+
 ```
 module add sratoolkit
 module add trim-galore/0.6.7 
