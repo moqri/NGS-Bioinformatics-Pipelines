@@ -3,7 +3,7 @@ Source:
 * https://informatics.fas.harvard.edu/atac-seq-guidelines.html
 
 ## Set up
-* Install [Genrich](https://github.com/jsh58/Genrich) and [MSPS](https://genometric.github.io/MSPC/)
+* You will need [Genrich](https://github.com/jsh58/Genrich) for peack-calling and [MSPS](https://genometric.github.io/MSPC/) if mergeing peacks.
 
 ```
 module add sratoolkit
