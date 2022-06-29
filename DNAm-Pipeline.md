@@ -8,9 +8,9 @@ module add samtools
 ```
 ```
 f=<fastq filename prefix>
-p=<number of processors>
-ind=<abismal index file>
-ref_genome=<reference genome>
+p=60 #number of processors
+ind=hg38/hg38.abismalidx #abismal index file
+ref_genome=hg38/hg38.fa #reference genome
 ```
 ```
 fasterq-dump $f -p "-e$p"
