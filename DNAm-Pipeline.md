@@ -12,9 +12,16 @@ p=60 #number of processors
 ind=hg38/hg38.abismalidx #abismal index file
 ref_genome=hg38/hg38.fa #reference genome
 ```
+### from SRA
 ```
 fasterq-dump $f -p "-e$p"
 trim_galore --paired -q 0 --length 0 "$f"_1.fastq.gz  "$f"_2.fastq.gz -j $p
+```
+### from sequencing companies
+```
+trim_galore --paired -q 0 --length 0 "$f"_R1_001.fastq.gz  "$f"_R2_001.fastq.gz -j $p
+```
+```
 abismal -i $ind "$f"_1_val_1.fq.gz "$f"_2_val_2.fq.gz -t $p -v | samtools view -b > "$f".bam 
 ```
 
