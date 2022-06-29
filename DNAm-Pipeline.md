@@ -9,8 +9,8 @@ module add samtools
 ```
 f=<fastq filename prefix>
 p=60 #number of processors
-ind=hg38/hg38.abismalidx #abismal index file
-ref_genome=hg38/hg38.fa #reference genome
+ind=hg38.abismalidx #abismal index file
+ref_genome=hg38.fa #reference genome
 ```
 ### from SRA
 ```
