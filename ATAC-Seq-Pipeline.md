@@ -15,8 +15,8 @@ module add sambamba
 ## Trimming
 ```
 f=<fastq filename prefix> # FASTQ for IP or Control
-p=<number of processors>
-index=<bowtie2 index path>
+p=60 #number of processors>
+ind=/mm10/mm10 #bowtie2 index path to .bt files
 
 fasterq-dump $f -p "-e$p"
 ```
@@ -29,7 +29,7 @@ bowtie2 -q -x $index -U "$f"_trimmed.fq  -S $f.sam --local --no-unal --very-sens
 ### Paied reads
 ```
 trim_galore --paired -q 0 --length 0 "$f"_1.fastq  "$f"_2.fastq -j $p
-bowtie2 -q -x $index -1 "$f"_1_val_1.fq -2 "$f"_2_val_2.fq -S $f.sam --local --no-unal --very-sensitive -X 2000 -p $p
+bowtie2 -q -x $ind -1 "$f"_1_val_1.fq -2 "$f"_2_val_2.fq -S $f.sam --local --no-unal --very-sensitive -X 2000 -p $p
 ```
 ## Peack calling
 ```
