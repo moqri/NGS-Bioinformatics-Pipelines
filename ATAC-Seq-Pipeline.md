@@ -14,7 +14,7 @@ module add sambamba
 ```
 ## Trimming
 ```
-f=<fastq filename prefix> # FASTQ for IP or Control
+f=<fastq filename prefix> # SRA ID
 p=60 #number of processors>
 ind=/mm10/mm10 #bowtie2 index path to .bt files
 
