@@ -41,3 +41,13 @@ Genrich  -t "$f"_n.bam -o $f.bed -j  -y  -r  -e chrM  -v
 ```
 mspc -i *.bed -r bio -w 1e-4 -s 1e-8
 ```
+
+### adjustments
+```
+samtools view -hf 0x2 $f.18.bam -b > $f.18.c.bam
+
+java -Xmx100g -jar /labs/mpsnyder/moqri/soft/picard.jar MarkDuplicates I=$f.18.c.bam O=$f.18.pic.bam M=tmp REMOVE_DUPLICATES=true
+
+macs3 callpeak -f BAMPE -t $f.18.pic.bam -g hs -n $f.bed -B -q 0.01
+
+```
