@@ -39,7 +39,7 @@ samtools view -h -q 30 $f.bam -b > $f.q.bam -@ $p
 samtools view -h -b -F 1804 -f 2 $f.q.bam -b > $f.qq.bam -@ $p 
 samtools view -hf 0x2 $f.qq.bam -b > $f.p.bam #proper paired
 samtools sort -n $f.p.bam > "$f".s.bam -@ 64
-#samtools sort -s $f.p.bam > "$f".s.bam -@ 64 for single reads
+#samtools sort $f.p.bam > "$f".s.bam -@ 64 for single reads
 java -Xmx100g -jar picard.jar MarkDuplicates I=$f.s.bam O=$f.pic.bam M=tmp REMOVE_DUPLICATES=true
 macs3 callpeak -f BAMPE -t $f.pic.bam -g hs -n $f.bed -B -q 0.01 --broad
 ```
