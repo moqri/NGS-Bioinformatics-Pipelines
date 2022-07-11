@@ -41,7 +41,7 @@ samtools view -hf 0x2 $f.qq.bam -b > $f.p.bam #proper paired
 samtools sort -n $f.p.bam > "$f".s.bam -@ $p/4
 #samtools sort $f.q.bam > "$f".s.bam -@ $p/4 for single reads
 java -Xmx120g -jar picard.jar MarkDuplicates I=$f.s.bam O=$f.pic.bam M=tmp REMOVE_DUPLICATES=true
-macs3 callpeak -f BAMPE -t $f.pic.bam -g hs -n $f.bed -B -q 0.01 --broad
+macs3 callpeak -f BAMPE -t $f.pic.bam -g hs -n $f.bed -q 0.01 --broad
 ```
 ## Peack calling using Genrich
 ```
