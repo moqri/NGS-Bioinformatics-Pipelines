@@ -3,7 +3,7 @@ Source:
 * https://informatics.fas.harvard.edu/atac-seq-guidelines.html
 
 ## Set up
-* You will need [Genrich](https://github.com/jsh58/Genrich) for peack-calling and [MSPS](https://genometric.github.io/MSPC/) if mergeing peacks.
+* You will need [Genrich](https://github.com/jsh58/Genrich) (if using Genrich for peack-calling) and [MSPS](https://genometric.github.io/MSPC/) if mergeing peacks.
 
 ```
 module add sratoolkit
@@ -11,6 +11,7 @@ module add trim-galore/0.6.7
 module add bowtie2 
 module add samtools
 module add sambamba
+module add macs3
 ```
 ## Trimming
 ```
