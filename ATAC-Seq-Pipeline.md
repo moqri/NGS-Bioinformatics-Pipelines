@@ -38,6 +38,7 @@ ind=/mm10/mm10 # bowtie2 index path to .bt files
 fasterq-dump $f -p "-e$p"
 trim_galore --paired -q 0 --length 0 "$f"_1.fastq  "$f"_2.fastq -j $p
 bowtie2 -q -x $ind -1 "$f"_1_val_1.fq -2 "$f"_2_val_2.fq -S $f.sam --local --no-unal --very-sensitive -X 2000 -p $p
+samtools view -h -q 30 $f.bam -b > $f.q.bam -@ $p
 samtools view -h -b -F 1804 -f 2 $f.q.bam -b > $f.qq.bam -@ $p 
 samtools view -hf 0x2 $f.qq.bam -b > $f.p.bam #proper paired
 samtools sort $f.p.bam > "$f".s.bam -@ 16
