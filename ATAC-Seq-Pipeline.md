@@ -32,11 +32,11 @@ bowtie2 -q -x $index -U "$f"_trimmed.fq  -S $f.sam --local --no-unal --very-sens
 trim_galore --paired -q 0 --length 0 "$f"_1.fastq  "$f"_2.fastq -j $p
 bowtie2 -q -x $ind -1 "$f"_1_val_1.fq -2 "$f"_2_val_2.fq -S $f.sam --local --no-unal --very-sensitive -X 2000 -p $p
 samtools view -bS $f.sam > $f.bam -@ $p
+samtools view -h -q 30 $f.bam -b > $f.q.bam -@ $p
 ```
 ## Peack calling using MACS3
 ### Single reads
 ```
-samtools view -h -q 30 $f.bam -b > $f.q.bam -@ $p
 samtools sort $f.q.bam > "$f".s.bam -@ 16 
 java -Xmx120g -jar picard.jar MarkDuplicates I=$f.s.bam O=$f.pic.bam M=tmp REMOVE_DUPLICATES=true
 macs3 callpeak -t $f.pic.bam -g hs -n $f.bed -q 0.01 --broad
