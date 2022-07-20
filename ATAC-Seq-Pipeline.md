@@ -12,7 +12,7 @@ module add bowtie2
 module add samtools
 module add sambamba
 module add macs3
-f=<fastq filename prefix> # e.g. SRA ID # alternatively ENA which is usually faster
+f=<fastq filename prefix> # e.g. SRA ID . If slow, download from ENA
 p=64 #number of processors
 ind=/mm10/mm10 # bowtie2 index path to .bt files
 fasterq-dump $f -p "-e$p"
