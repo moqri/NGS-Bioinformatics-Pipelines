@@ -53,7 +53,7 @@ Genrich  -t "$f"_n.bam -o $f.bed -j  -y  -r  -e chrM  -v
 ```
 
 ## remove blacklist
-bedtools intersect -v -a $f.bed_peaks.broadPeak -b /oak/stanford/scg/lab_mpsnyder/moqri/data_all/ref/bl/mm10-blacklist.v2.bed > $f.bed
+```bedtools intersect -v -a $f.bed_peaks.broadPeak -b /oak/stanford/scg/lab_mpsnyder/moqri/data_all/ref/bl/mm10-blacklist.v2.bed > $f.bed```
 
 ## Consencus
 ```
