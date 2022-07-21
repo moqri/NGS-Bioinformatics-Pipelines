@@ -51,6 +51,10 @@ macs3 callpeak -f BAMPE -t $f.pic.bam -g hs -n $f.bed -q 0.01 --broad
 samtools sort -n $f.bam > "$f"_n.bam -@ 16
 Genrich  -t "$f"_n.bam -o $f.bed -j  -y  -r  -e chrM  -v
 ```
+
+## remove blacklist
+bedtools intersect -v -a $f.bed_peaks.broadPeak -b /oak/stanford/scg/lab_mpsnyder/moqri/data_all/ref/bl/mm10-blacklist.v2.bed > $f.bed
+
 ## Consencus
 ```
 mspc -i *.bed -r bio -w 1e-4 -s 1e-8
