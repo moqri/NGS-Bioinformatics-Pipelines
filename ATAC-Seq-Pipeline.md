@@ -59,3 +59,9 @@ Genrich  -t "$f"_n.bam -o $f.bed -j  -y  -r  -e chrM  -v
 ```
 mspc -i *.bed -r bio -w 1e-4 -s 1e-8
 ```
+```
+bedops -i *Peak > int.bed
+```
+```
+bedtools coverage -a int.bed -b $f/$f.pic.bam > $f.cov
+```
