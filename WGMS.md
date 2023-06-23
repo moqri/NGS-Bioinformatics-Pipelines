@@ -1,7 +1,7 @@
 
 ## 06-23-2023
 
-### http://smithlabresearch.org/software/methpipe/](https://github.com/smithlabcode/dnmtools)](https://github.com/smithlabcode/dnmtools)https://github.com/smithlabcode/dnmtools
+### [DNMTools](https://github.com/smithlabcode/dnmtools)
 
 SCG:
 1. Mahdi goes to same server each time (35)
