@@ -4,8 +4,10 @@ Using DNMTools to analyze whole-genome methylation sequencing data
 
 ### [DNMTools](https://github.com/smithlabcode/dnmtools)
 
-## General setup
+## General setup with installing DNMTools and HTSLib
 Using [SCG](https://ondemand.scg.stanford.edu/) for storage and computing:
+
+[Primer for SCG](https://github.com/nicolerg/resources/blob/master/scg_primer.md) with information about nodes, modules, etc.
 
 Using specific server
 - From shell: ssh tmurty@smsh11dsu-srcf-d15-35.scg.stanford.edu
@@ -38,6 +40,16 @@ Using sessions to have separate jobs running simultaneously
 
    - ../configure CPPFLAGS='-I /home/tmurty/htslib-1.9/headers' \
              LDFLAGS='-L /home/tmurty/htslib-1.9/lib'
+
+
+## Setup using SCG modules
+1. Navigate to directory within vsebast/shared: cd /oak/stanford/scg/lab_vsebast/shared/wgms
+2. Want to load module for DNMTools using SCG
+3. module spider dnmtools
+4. module add dnmtools
+   - advantage: the above method of installation is having issues, so this is a single step of loading a module
+   - disadvantage: we cannot (re)install these pacakges as the most updated version (stuck with whatever SCG uses)
+
 
 
 
