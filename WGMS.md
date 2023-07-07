@@ -26,8 +26,9 @@ Using sessions to have separate jobs running simultaneously
 3. wget https://github.com/smithlabcode/dnmtools/releases/download/v1.2.4/dnmtools-1.2.4.tar.gz
 4. tar -zxvf dnmtools-1.2.4.tar.gz
 5. cd dnmtools-1.2.4 && mkdir build && cd build
-6. ./configure --prefix=/home/tmurty/htslib-1.9
-   - What worked for Mahdi: ./configure --prefix=/home/moqri/htslib-1.9/test
+6. cd /home/tmurty/htslib-1.9
+7. ./configure --prefix=/home/tmurty/htslib-1.9
+   - What worked for Mahdi, but did not work for Tara: ./configure --prefix=/home/moqri/htslib-1.9/test
 8. make
 9. install
 10. cd back to DNAMtools
