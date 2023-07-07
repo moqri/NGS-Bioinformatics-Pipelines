@@ -27,11 +27,11 @@ Using sessions to have separate jobs running simultaneously
 4. tar -zxvf dnmtools-1.2.4.tar.gz
 5. cd dnmtools-1.2.4 && mkdir build && cd build
 6. ./configure --prefix=/home/tmurty/htslib-1.9
-   - what worked for Mahdi: ./configure --prefix=/home/moqri/htslib-1.9/test
+   - What worked for Mahdi: ./configure --prefix=/home/moqri/htslib-1.9/test
 8. make
 9. install
 10. cd back to DNAMtools
-11. ISSUE: Where is "include" and "lib"?
+11. **ISSUE**: Where is "include" and "lib"?
     - ./configure CPPFLAGS='-I /home/moqri/dnmtools-1.2.4/htslib-1.9/test/include'
              LDFLAGS='-L /home/moqri/dnmtools-1.2.4/htslib-1.9/test/lib'
 
