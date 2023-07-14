@@ -1,4 +1,3 @@
-
 ## Overview
 Using DNMTools to analyze whole-genome methylation sequencing data
 
