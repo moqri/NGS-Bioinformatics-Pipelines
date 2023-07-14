@@ -17,7 +17,7 @@ Using sessions to have separate jobs running simultaneously
 
 ```tmux``` -- gives you a session and you can then switch between sessions
 
-tmux control b, release everything, and then press d -- exit session
+within a tmux session: control b, release everything, and then press d -- exit session
 
 ```tmux ls``` -- see all the sessions; pwd and hostname to see that connected to server
 
@@ -81,4 +81,15 @@ dnmtools abismalidx hg38.fa hg38.idx
       - If not done yet in this session:  ```module add dnmtools``` & ```cd /labs/vsebast/shared/wgms```
    - ```dnmtools abismal -i <index> <val1> <val2> -t <nodes> -v | samtools view -b > mapped.bam```
        - ```dnmtools abismal -i hg38.idx d62_M38_CKDL230014191-1A_H5NYWDSX7_L2_1.fq.gz d62_M38_CKDL230014191-1A_H5NYWDSX7_L2_2.fq.gz -t 60 -v | samtools view -b > d62_M38_CKDL230014191-1A_H5NYWDSX7_L2_mapped.bam```
-       - since the file is >10GB, then would expect the mapping to take ~hours
+       - since the file is >10GB, then would expect the mapping to take ~hours (13GB and 14GB)
+       - started at 2:45PM 07/14/2023; 5% completed at 3:05PM
+
+### Calculating DNAm levels
+   - ```counts``` which was previuosly ```methcounts```
+   - ```$ dnmtools counts -c /path/to/genome.fa -o output.meth input.sam```
+      - can input the .sam file (can be read as text file, relatively large) or compressed .bam file (binary)
+      - "The input mapped reads file (input.bam) is in SAM/BAM format. The reads should be sorted so those mapping to the same chromosome are consecutive in the file. Duplicate reads should be probably be removed first, but that depends on your data." [DNMTools](https://dnmtools.readthedocs.io/en/latest/counts/)
+   - using a previously generated bam file to test (since mapping is ongoing from previous section)
+      - ```/labs/vsebast/moqri/data/PRJEB28044/60_Hmp01_blood_young.bam```
+   - ```dnmtools counts -c hg38.fa -o DNAm.meth /labs/vsebast/moqri/data/PRJEB28044/60_Hmp01_blood_young.bam```
+      - unfortunately this does not run because it does not find chromosome 1 (likely it should be chr1 and it is just 1) 
