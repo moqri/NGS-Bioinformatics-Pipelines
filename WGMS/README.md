@@ -1,1 +1,1 @@
-Anything here (README.MS) will automatically show when you are the at the NGS-Bioinformatics-Pipelines/WGMS path
+Anything in README.MD file will automatically show here when you are the at the NGS-Bioinformatics-Pipelines/WGMS path
