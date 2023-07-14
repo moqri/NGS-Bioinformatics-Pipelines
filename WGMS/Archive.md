@@ -19,3 +19,13 @@
 
    - ../configure CPPFLAGS='-I /home/tmurty/htslib-1.9/headers' \
              LDFLAGS='-L /home/tmurty/htslib-1.9/lib'
+
+### Calculating DNAm levels
+   - ```counts``` which was previuosly ```methcounts```
+   - ```$ dnmtools counts -c /path/to/genome.fa -o output.meth input.sam```
+      - can input the .sam file (can be read as text file, relatively large) or compressed .bam file (binary)
+      - "The input mapped reads file (input.bam) is in SAM/BAM format. The reads should be sorted so those mapping to the same chromosome are consecutive in the file. Duplicate reads should be probably be removed first, but that depends on your data." [DNMTools](https://dnmtools.readthedocs.io/en/latest/counts/)
+   - using a previously generated bam file to test (since mapping is ongoing from previous section)
+      - ```/labs/vsebast/moqri/data/PRJEB28044/60_Hmp01_blood_young.bam```
+   - ```dnmtools counts -c hg38.fa -o DNAm.meth /labs/vsebast/moqri/data/PRJEB28044/60_Hmp01_blood_young.bam```
+      - ~~unfortunately this does not run because it does not find chromosome 1 (likely it should be chr1 and it is just 1)~~
