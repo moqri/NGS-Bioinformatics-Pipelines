@@ -80,13 +80,13 @@ dnmtools abismalidx hg38.fa hg38.idx
    - ```module add samtools```
       - If not done yet in this session:  ```module add dnmtools``` & ```cd /labs/vsebast/shared/wgms```
    - ```dnmtools abismal -i <index> <val1> <val2> -t <nodes> -v | samtools view -b > mapped.bam```
-       - ```dnmtools abismal -i hg38.idx d62_M38_CKDL230014191-1A_H5NYWDSX7_L2_1.fq.gz d62_M38_CKDL230014191-1A_H5NYWDSX7_L2_2.fq.gz -t 60 -v | samtools view -b > d62_M38_CKDL230014191-1A_H5NYWDSX7_L2_mapped.bam```
+       - ```dnmtools abismal -i hg38.idx d62_M38_CKDL230014191-1A_H5NYWDSX7_L2_1_val_1.fq.gz d62_M38_CKDL230014191-1A_H5NYWDSX7_L2_2_val_2.fq.gz -t 60 -v | samtools view -b > d62_val_mapped.bam```
        - since the file is >10GB, then would expect the mapping to take ~hours (13GB and 14GB)
-       - started at 2:45PM 07/14/2023; 5% completed at 3:05PM
+       - started at 3:44PM 07/14/2023; % completed at PM
 
 ### Calculating DNAm levels
    - ```counts``` which was previuosly ```methcounts```
    - ```$ dnmtools counts -c /path/to/genome.fa -o output.meth input.sam```
       - can input the .sam file (can be read as text file, relatively large) or compressed .bam file (binary)
       - "The input mapped reads file (input.bam) is in SAM/BAM format. The reads should be sorted so those mapping to the same chromosome are consecutive in the file. Duplicate reads should be probably be removed first, but that depends on your data." [DNMTools](https://dnmtools.readthedocs.io/en/latest/counts/)
-   - using a previously generated bam file to test (since mapping is ongoing from previous section)
+   
