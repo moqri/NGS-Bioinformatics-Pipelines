@@ -70,3 +70,15 @@ dnmtools abismalidx hg38.fa hg38.idx
       - output: trimmed version of file + _report.txt
       - slow process, but can make it 20-40x faster by doing multi process using "j"
             - ```trim_galore --paired -q 0 --length 0 "$f"_1.fq.gz  "$f"_2.fq.gz -j 60```
+
+         - ```cat file_trimming_report.txt```
+             - To evaluate the trimming
+             - should see that there are ~0% C because of methylation data
+             - adapter information: Illumina TruSeq (confirm this is what we used)
+             - ```cat d62_M38_CKDL230014191-1A_H5NYWDSX7_L2_1.fq.gz_trimming_report.txt```
+    
+   - ```module add samtools```
+      - If not done yet in this session:  ```module add dnmtools``` & ```cd /labs/vsebast/shared/wgms```
+   - ```dnmtools abismal -i <index> <val1> <val2> -t <nodes> -v | samtools view -b > mapped.bam```
+       - ```dnmtools abismal -i hg38.idx d62_M38_CKDL230014191-1A_H5NYWDSX7_L2_1.fq.gz d62_M38_CKDL230014191-1A_H5NYWDSX7_L2_2.fq.gz -t 60 -v | samtools view -b > d62_M38_CKDL230014191-1A_H5NYWDSX7_L2_mapped.bam```
+       - since the file is >10GB, then would expect the mapping to take ~hours
