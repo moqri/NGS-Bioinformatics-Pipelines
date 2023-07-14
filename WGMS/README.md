@@ -82,7 +82,7 @@ dnmtools abismalidx hg38.fa hg38.idx
    - ```dnmtools abismal -i <index> <val1> <val2> -t <nodes> -v | samtools view -b > mapped.bam```
        - ```dnmtools abismal -i hg38.idx d62_M38_CKDL230014191-1A_H5NYWDSX7_L2_1_val_1.fq.gz d62_M38_CKDL230014191-1A_H5NYWDSX7_L2_2_val_2.fq.gz -t 60 -v | samtools view -b > d62_val_mapped.bam```
        - since the file is >10GB, then would expect the mapping to take ~hours (13GB and 14GB)
-       - started at 3:44PM 07/14/2023; % completed at PM
+       - started at 3:44PM 07/14/2023; 2% completed at 3:50PM; 10% completed at 4:18pm; 20% at 4:54 -- approximate 6 hours total
 
 ### Calculating DNAm levels
    - ```counts``` which was previuosly ```methcounts```
