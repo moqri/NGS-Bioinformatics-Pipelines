@@ -135,3 +135,15 @@ dnmtools abismalidx hg38.fa hg38.idx
 - [Levels](https://dnmtools.readthedocs.io/en/latest/levels/)
 - ```dnmtools levels -o output.levels input.meth```
 - ```dnmtools levels -o d62_M38.levels d62_M38.meth```
+- ``` view d62_M38.levels ```
+
+### Hypomethylated Regions (HMR) (Tara following ReadtheDocs 7/17/23)
+- [hmr](https://dnmtools.readthedocs.io/en/latest/hmr/)
+- "Running hmr requires a file of methylation levels formatted like the output of the counts. For identifying HMRs in mammalian methylomes, use the symmetric CpG methylation levels. This is obtained by using the sym command after having used the counts command."
+   - [sym info](https://dnmtools.readthedocs.io/en/latest/sym/)
+      - "The above command will merge all CpG pairs while also discarding sites with an indication that the CpG has mutated. Note that as long as one site of the pair is mutated, the pair is discarded. This is the default mode." How should mutations be taken into account? 
+   - ```dnmtools sym -o human_esc_CpG.meth human_esc.meth```
+   - ```dnmtools sym -o d62_M38_CpG.meth d62_M38.meth``` where _CpG.meth is version with collapsed counts for symmetric CpGs sites
+- ```dnmtools hmr -p params.txt -o output.hmr input.meth```
+- ```dnmtools hmr -p params_d62_M38.txt -o d62_M38.hmr d62_M38_CpG.meth```
+   - using d62_M38.meth (output from counts) gives error: ```error: input is not symmetric-CpGs: d62_M38.meth``` 
