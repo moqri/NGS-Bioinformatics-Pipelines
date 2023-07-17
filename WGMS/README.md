@@ -129,4 +129,9 @@ dnmtools abismalidx hg38.fa hg38.idx
                - output file is 16GB vs pre-sorted (mapped) is 25GB
             - Using sorted file for counts
                - ``` dnmtools counts -c /labs/vsebast/shared/wgms/hg38.fa -o d62_M38.meth d62_M38_val_mapped_sorted.bam ```
-   
+               - results in 36G file ```d62_M38.meth ```
+
+### Global Methylation Summary Stats (Tara following ReadtheDocs 7/17/23)
+- [Levels](https://dnmtools.readthedocs.io/en/latest/levels/)
+- ```dnmtools levels -o output.levels input.meth```
+- ```dnmtools levels -o d62_M38.levels d62_M38.meth```
