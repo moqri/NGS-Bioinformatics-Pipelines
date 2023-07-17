@@ -144,6 +144,8 @@ dnmtools abismalidx hg38.fa hg38.idx
       - "The above command will merge all CpG pairs while also discarding sites with an indication that the CpG has mutated. Note that as long as one site of the pair is mutated, the pair is discarded. This is the default mode." How should mutations be taken into account? 
    - ```dnmtools sym -o human_esc_CpG.meth human_esc.meth```
    - ```dnmtools sym -o d62_M38_CpG.meth d62_M38.meth``` where _CpG.meth is version with collapsed counts for symmetric CpGs sites
+      - results in 863M output file
 - ```dnmtools hmr -p params.txt -o output.hmr input.meth```
 - ```dnmtools hmr -p params_d62_M38.txt -o d62_M38.hmr d62_M38_CpG.meth```
-   - using d62_M38.meth (output from counts) gives error: ```error: input is not symmetric-CpGs: d62_M38.meth``` 
+   - using d62_M38.meth (output from counts) gives error: ```error: input is not symmetric-CpGs: d62_M38.meth```
+   - d62_M38.hmr is 1.4M 
