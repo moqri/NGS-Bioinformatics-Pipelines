@@ -141,11 +141,30 @@ dnmtools abismalidx hg38.fa hg38.idx
 - [hmr](https://dnmtools.readthedocs.io/en/latest/hmr/)
 - "Running hmr requires a file of methylation levels formatted like the output of the counts. For identifying HMRs in mammalian methylomes, use the symmetric CpG methylation levels. This is obtained by using the sym command after having used the counts command."
    - [sym info](https://dnmtools.readthedocs.io/en/latest/sym/)
-      - "The above command will merge all CpG pairs while also discarding sites with an indication that the CpG has mutated. Note that as long as one site of the pair is mutated, the pair is discarded. This is the default mode." How should mutations be taken into account? 
+      - "command will merge all CpG pairs while also discarding sites with an indication that the CpG has mutated. Note that as long as one site of the pair is mutated, the pair is discarded. This is the default mode." How should mutations be taken into account? 
    - ```dnmtools sym -o human_esc_CpG.meth human_esc.meth```
    - ```dnmtools sym -o d62_M38_CpG.meth d62_M38.meth``` where _CpG.meth is version with collapsed counts for symmetric CpGs sites
       - results in 863M output file
 - ```dnmtools hmr -p params.txt -o output.hmr input.meth```
 - ```dnmtools hmr -p params_d62_M38.txt -o d62_M38.hmr d62_M38_CpG.meth```
    - using d62_M38.meth (output from counts) gives error: ```error: input is not symmetric-CpGs: d62_M38.meth```
-   - d62_M38.hmr is 1.4M 
+   - d62_M38.hmr is 1.4M
+
+### d62_M8 processing
+1. ```ssh tmurty@smsh11dsu-srcf-d15-35.scg.stanford.edu```
+2. ```tmux a -t2```
+3. ```
+   module load dnmtools
+   module load samtools
+   module load trim-galore/0.6.7
+   ```
+4. With .fq.gz copied to directory within /shared/
+5. ```f=d62_M8_CKDL230014188-1A_H5NYWDSX7_L1```
+6. Trimming: ```trim_galore --paired -q 0 --length 0 "$f"_1.fq.gz  "$f"_2.fq.gz -j 60```
+7. Mapping: ```dnmtools abismal -i /labs/vsebast/shared/wgms/hg38.idx d62_M8_CKDL230014188-1A_H5NYWDSX7_L1_1_val_1.fq.gz d62_M8_CKDL230014188-1A_H5NYWDSX7_L1_2_val_2.fq.gz -t 60 -v | samtools view -b > d62_M8_val_mapped.bam```
+   - run on tmux session 3: 20% done in ~1 hour on 7/17/2023
+9. Formatting: ```dnmtools format -f abismal d62_M8_val_mapped.bam d62_M8_val_mapped_format.sam ```
+10. Sorting: ``` samtools sort d62_M8_val_mapped.bam -m 1G -@ 8 -o d62_M8_val_mapped_sorted.bam```
+11. Counts: ``` dnmtools counts -c /labs/vsebast/shared/wgms/hg38.fa -o d62_M8.meth d62_M8_val_mapped_sorted.bam ```
+12. Collapse counts for symmetric CpGs sites: ```dnmtools sym -o d62_M8_CpG.meth d62_M8.meth```
+13. HMR: ```dnmtools hmr -p params_d62_M38.txt -o d62_M8.hmr d62_M8_CpG.meth```
