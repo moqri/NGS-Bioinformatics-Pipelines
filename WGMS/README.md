@@ -113,6 +113,7 @@ dnmtools abismalidx hg38.fa hg38.idx
    - ```dnmtools format -f abismal input.bam output.sam```
       - For Mahdi's approach mapped bam: d62_M38_val_mapped.bam
       - ```dnmtools format -f abismal d62_M38_val_mapped.bam d62_M38_val_mapped_format.sam ```
+         - Looks like it just runs forever and doesn't create output file...    
    - ```dnmtools format -f abismal -t 8 -B input.bam output.bam```
 
 ### Calculating DNAm levels
@@ -163,8 +164,7 @@ dnmtools abismalidx hg38.fa hg38.idx
 6. Trimming: ```trim_galore --paired -q 0 --length 0 "$f"_1.fq.gz  "$f"_2.fq.gz -j 60```
 7. Mapping: ```dnmtools abismal -i /labs/vsebast/shared/wgms/hg38.idx d62_M8_CKDL230014188-1A_H5NYWDSX7_L1_1_val_1.fq.gz d62_M8_CKDL230014188-1A_H5NYWDSX7_L1_2_val_2.fq.gz -t 60 -v | samtools view -b > d62_M8_val_mapped.bam```
    - run on tmux session 2: [Tue Jul 18 17:36:01 2023] total mapping time: 14469.189541s
-9. Formatting: ```dnmtools format -f abismal d62_M8_val_mapped.bam d62_M8_val_mapped_format.sam ```
-10. Sorting: ``` samtools sort d62_M8_val_mapped.bam -m 1G -@ 8 -o d62_M8_val_mapped_sorted.bam```
-11. Counts: ``` dnmtools counts -c /labs/vsebast/shared/wgms/hg38.fa -o d62_M8.meth d62_M8_val_mapped_sorted.bam ```
-12. Collapse counts for symmetric CpGs sites: ```dnmtools sym -o d62_M8_CpG.meth d62_M8.meth```
-13. HMR: ```dnmtools hmr -p params_d62_M38.txt -o d62_M8.hmr d62_M8_CpG.meth```
+8. Sorting: ``` samtools sort d62_M8_val_mapped.bam -m 1G -@ 8 -o d62_M8_val_mapped_sorted.bam```
+9. Counts: ``` dnmtools counts -c /labs/vsebast/shared/wgms/hg38.fa -o d62_M8.meth d62_M8_val_mapped_sorted.bam ```
+10. Collapse counts for symmetric CpGs sites: ```dnmtools sym -o d62_M8_CpG.meth d62_M8.meth```
+11. HMR: ```dnmtools hmr -p params_d62_M38.txt -o d62_M8.hmr d62_M8_CpG.meth```
