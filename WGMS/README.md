@@ -168,3 +168,4 @@ dnmtools abismalidx hg38.fa hg38.idx
 9. Counts: ``` dnmtools counts -c /labs/vsebast/shared/wgms/hg38.fa -o d62_M8.meth d62_M8_val_mapped_sorted.bam ```
 10. Collapse counts for symmetric CpGs sites: ```dnmtools sym -o d62_M8_CpG.meth d62_M8.meth```
 11. HMR: ```dnmtools hmr -p params_d62_M38.txt -o d62_M8.hmr d62_M8_CpG.meth```
+12. ```dnmtools diff -o d62_M8_M38.diff /labs/vsebast/shared/wgms/d62_M8/d62_M8.meth /labs/vsebast/shared/wgms/d62_M38.meth```
