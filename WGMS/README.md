@@ -167,5 +167,24 @@ dnmtools abismalidx hg38.fa hg38.idx
 8. Sorting: ``` samtools sort d62_M8_val_mapped.bam -m 1G -@ 8 -o d62_M8_val_mapped_sorted.bam```
 9. Counts: ``` dnmtools counts -c /labs/vsebast/shared/wgms/hg38.fa -o d62_M8.meth d62_M8_val_mapped_sorted.bam ```
 10. Collapse counts for symmetric CpGs sites: ```dnmtools sym -o d62_M8_CpG.meth d62_M8.meth```
-11. HMR: ```dnmtools hmr -p params_d62_M38.txt -o d62_M8.hmr d62_M8_CpG.meth```
-12. ```dnmtools diff -o d62_M8_M38.diff /labs/vsebast/shared/wgms/d62_M8/d62_M8.meth /labs/vsebast/shared/wgms/d62_M38.meth```
+   - This is the one to use as we move forward
+   - ```head d62_M38_CpG.meth``` should not have consequtive numbers (10468 and no 10469, for example)
+   - ```tail d62_M38_CpG.meth``` -- want to exclude X and Y chromosomes
+12. HMR: ```dnmtools hmr -p params_d62_M38.txt -o d62_M8.hmr d62_M8_CpG.meth```
+   ```head d62_M8.hmr``` -- how many hmrs in the region shown and calls it hypomethylated or not
+   ```wc -l d62_M8.hmr``` --> ~40000 (# of HMRs we would expect)
+13. ```dnmtools diff -o d62_M8_M38.diff /labs/vsebast/shared/wgms/d62_M8/d62_M8.meth /labs/vsebast/shared/wgms/d62_M38.meth```
+
+### Converting methylation data to BigWig for visualization on UCSC Genome Browser
+1. Need chromosome sizes:  ```wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/fetchChromSizes``` & ```chmod +x fetchChromSizes ```
+2. Need to download wigtobigwig: [parent site](http://hgdownload.soe.ucsc.edu/admin/exe/) & [wigToBigWig](http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/wigToBigWig)
+3. ```wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/wigToBigWig```
+4. ```chmod +x wigToBigWig`` to make it executable
+5. ```f=d62_M8_CpG```
+6. ```awk '{print $1,$2,$2+1,$5}' $f.meth > $f.wig```
+7. ```/home/tmurty/fetchChromSizes hg38 > /labs/vsebast/shared/wgms/chrom_sizes.txt```
+8. ```../wigToBigWig $f.wig /labs/vsebast/shared/wgms/chrom_sizes.txt $f.bw```
+
+### Visualizing HMR results using UCSC Genome Browser
+- can download the .hmr files and directly upload to Genome Browser
+
