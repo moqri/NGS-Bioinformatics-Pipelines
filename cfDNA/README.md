@@ -7,3 +7,10 @@ p=64
 trim_galore -q 20 --length 50 --three_prime_clip_R1 20 --clip_R1 20 --clip_R2 20 --paired "$f"_1.fastq "$f"_2.fastq -j $p
 dnmtools abismal -i $ind -s "$f".stats "$f"_1_val_1.fq "$f"_2_val_2.fq -t $p -v | samtools view -bS > "$f".bam
 ```
+
+
+```
+bismark_genome_preparation': bismark_genome_preparation /labs/mpsnyder/moqri/data_all/ref/hg38/ --parallel 64
+bismark --genome $hg38_folder --parallel 64 -1 SRR15143251_1_val_1.fq -2 SRR15143251_2_val_2.fq
+bismark_methylation_extractor SRR15143251_1_val_1_bismark_bt2_pe.bam --parallel 64 --bedGraph --comprehensive --ucsc
+```
