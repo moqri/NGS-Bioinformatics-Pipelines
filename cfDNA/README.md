@@ -22,6 +22,8 @@ awk '{print $1,$2,$2+1,$4}' $f.cov > $f.bed
 
 /labs/mpsnyder/moqri/soft/ucsc/bedGraphToBigWig $f.bed ../ch.size $f.bw
 cp $f.bw /labs/vsebast/shared/PRC2_Clock/data/cfDNA/
+/labs/mpsnyder/moqri/soft/Bismark-0.24.1/bismark2bedGraph CpG_context_SRR15143251_1_val_1_bismark_bt2_pe.t
+xt -o bed --ucsc  ample
 ```
 
 ```
