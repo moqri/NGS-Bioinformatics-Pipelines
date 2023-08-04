@@ -12,6 +12,6 @@ dnmtools abismal -i $ind -s "$f".stats "$f"_1_val_1.fq "$f"_2_val_2.fq -t $p -v 
 
 ```
 bismark_genome_preparation /labs/mpsnyder/moqri/data_all/ref/hg38/ --parallel $p
-bismark --genome $hg38_folder --parallel $p -1 SRR15143251_1_val_1.fq -2 SRR15143251_2_val_2.fq
+bismark --genome $hg38_folder --parallel $p -1 SRR15143251_1_val_1.fq.gz -2 SRR15143251_2_val_2.fq.gz
 bismark_methylation_extractor SRR15143251_1_val_1_bismark_bt2_pe.bam --parallel $p --bedGraph --comprehensive --ucsc
 ```
