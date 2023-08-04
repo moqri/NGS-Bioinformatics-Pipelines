@@ -2,6 +2,7 @@ https://dnmtools.readthedocs.io/en/latest/
 
 
 ```
+module add trim-galore/0.6.7 
 f=SRR15143251
 p=60
 trim_galore -q 20 --length 50 --three_prime_clip_R1 20 --clip_R1 20 --clip_R2 20 --paired "$f"_1.fastq "$f"_2.fastq -j $p
