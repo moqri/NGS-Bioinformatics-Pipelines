@@ -53,9 +53,23 @@ dnmtools abismalidx hg38.fa hg38.idx
    - the second line is the actual read: no C because there is conversion in methylation data (compared to seeing C in DNA data)
    - ```head <file.fq> -n2``` will give 2 rows
 4. Removing adapters (trimming)
-5. Quality control (if you are not sure of quality of sequencing itself)
-
-
+ - below (in mapping section) is generic qc usng trim galore, but may need to do more specific and tailored quality control
+6. Quality control (if you are not sure of quality of sequencing itself)
+- ````head [rawfile_1.fq]```
+   - should have many Fs in first section
+   - look for patterns
+   - should see that the top 3 rows have fewer Cs (90% of Cs should be converted to Ts because of bisulphite treatment) -- 10% or lower
+   - bottom three rows should have few Gs (reverse strand) -- 10% or lower
+   - check if strands match (CTRL-F different patterns in reverse)
+- fastqc on original files (before doing anything else)
+   - ``` module spider fastqc ```
+      - for any sequencing (methylation or otherwise) 
+   - ```module add fastqc```
+   - ``` fastqc d62_M8_CKDL230014188-1A_H5NYWDSX7_L1_1.fq d62_M8_CKDL230014188-1A_H5NYWDSX7_L1_2.fq ```
+   - [Babraham Bioinformatics info] (https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+   - Report (html)
+      - Per base sequence content: expect a uniform, flat trace (move bases associated with non-flat); methylation conversation happened properly --> much lower C in forward and much higher T; much lower G in reverse and much higher A 
+   
 ### Mapping using abismal (Mahdi's approach)
    - General: ```$dnmtools abismal [OPTIONS] input.fq [input-r2.fq]```
    - ```$dnmtools abismal -i $ind "$f"_1_val_1.fq.gz "$f"_2_val_2.fq.gz -t $p -v```
@@ -187,4 +201,11 @@ dnmtools abismalidx hg38.fa hg38.idx
 
 ### Visualizing HMR results using UCSC Genome Browser
 - can download the .hmr files and directly upload to Genome Browser
+- [GenomeBrowser}(https://genome.ucsc.edu/s/tmurty/exh-methylation-HMR)
+   - confirm that the methylation is in regulatory regions (between genes)
+
+### Visualizing mapping by UCSC Genome Browser
+- Use server (FTP)
+- upload .bw files (continuous instead of the separated lines with HMR visualization)
+
 
