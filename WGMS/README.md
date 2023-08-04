@@ -64,11 +64,12 @@ dnmtools abismalidx hg38.fa hg38.idx
 - fastqc on original files (before doing anything else)
    - ``` module spider fastqc ```
       - for any sequencing (methylation or otherwise) 
-   - ```module add fastqc```
+   - ```module load fastqc```
    - ``` fastqc d62_M8_CKDL230014188-1A_H5NYWDSX7_L1_1.fq d62_M8_CKDL230014188-1A_H5NYWDSX7_L1_2.fq ```
-   - [Babraham Bioinformatics info] (https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+   - [Babraham Bioinformatics info](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
    - Report (html)
-      - Per base sequence content: expect a uniform, flat trace (move bases associated with non-flat); methylation conversation happened properly --> much lower C in forward and much higher T; much lower G in reverse and much higher A 
+      - Per base sequence content: expect a uniform, flat trace (move bases associated with non-flat); methylation conversation happened properly --> much lower C in forward and much higher T; much lower G in reverse and much higher A
+      - expect warnings before trimming and no warnings after trimming
    
 ### Mapping using abismal (Mahdi's approach)
    - General: ```$dnmtools abismal [OPTIONS] input.fq [input-r2.fq]```
