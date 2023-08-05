@@ -207,6 +207,8 @@ dnmtools abismalidx hg38.fa hg38.idx
 
 ### Visualizing mapping by UCSC Genome Browser
 - Use server (FTP)
+   - ```aws --profile tmurty --endpoint-url https://os.scg.stanford.edu s3 sync /labs/vsebast/shared/wgms/bw s3://vs_prc2_genebrowser/ProjCellExh_OURWGBS_bw_TM```
+      - This creates the target folder ProjCellExh_OURWGBS_bw_TM  
 - upload .bw files (continuous instead of the separated lines with HMR visualization)
 
 
