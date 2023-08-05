@@ -71,7 +71,7 @@ dnmtools abismalidx hg38.fa hg38.idx
       - Per base sequence content: expect a uniform, flat trace (move bases associated with non-flat); methylation conversation happened properly --> much lower C in forward and much higher T; much lower G in reverse and much higher A
       - expect warnings before trimming and no warnings after trimming
    
-### Mapping using abismal (Mahdi's approach)
+### Mapping using abismal - Mahdi's approach
    - General: ```$dnmtools abismal [OPTIONS] input.fq [input-r2.fq]```
    - ```$dnmtools abismal -i $ind "$f"_1_val_1.fq.gz "$f"_2_val_2.fq.gz -t $p -v```
             - ind is the genome index
@@ -108,7 +108,7 @@ dnmtools abismalidx hg38.fa hg38.idx
          [mapping reads|===================================================|100%]
          [Fri Jul 14 21:25:36 2023] total mapping time: 20506.728474s
          ```
-### Mapping using abismal (Readthedocs) - July 15 TM approach
+### Mapping using abismal - ReadtheDocs approach (not used going forward in pipeline)
 1. For paired-end reads:
    - ```abismal -i <index> -o <output SAM> [options] <input fastq 1> <input fastq 2>```
    - ``` dnmtools abismal -i hg38.idx -o d62_M38_mapped.sam -t 60 -v d62_M38_CKDL230014191-1A_H5NYWDSX7_L2_1_val_1.fq.gz d62_M38_CKDL230014191-1A_H5NYWDSX7_L2_2_val_2.fq.gz ```
@@ -132,6 +132,7 @@ dnmtools abismalidx hg38.fa hg38.idx
    - ```dnmtools format -f abismal -t 8 -B input.bam output.bam```
 
 ### Calculating DNAm levels
+   - using mapping from abismal: d62_M38_val_mapped.bam
    - ```counts``` which was previuosly ```methcounts```
    - ```$ dnmtools counts -c /path/to/genome.fa -o output.meth input.sam```
       - can input the .sam file (can be read as text file, relatively large) or compressed .bam file (binary)
@@ -194,7 +195,7 @@ dnmtools abismalidx hg38.fa hg38.idx
 1. Need chromosome sizes:  ```wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/fetchChromSizes``` & ```chmod +x fetchChromSizes ```
 2. Need to download wigtobigwig: [parent site](http://hgdownload.soe.ucsc.edu/admin/exe/) & [wigToBigWig](http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/wigToBigWig)
 3. ```wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/wigToBigWig```
-4. ```chmod +x wigToBigWig`` to make it executable
+4. ```chmod +x wigToBigWig``` to make it executable
 5. ```f=d62_M8_CpG```
 6. ```awk '{print $1,$2,$2+1,$5}' $f.meth > $f.wig```
 7. ```/home/tmurty/fetchChromSizes hg38 > /labs/vsebast/shared/wgms/chrom_sizes.txt```
