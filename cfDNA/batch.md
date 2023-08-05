@@ -12,7 +12,7 @@ done
 ```
 module add trim-galore/0.6.7 
 hg38=/labs/mpsnyder/moqri/data_all/ref/hg38/
-
+cd trim
 for f in SRR15143257 SRR15143260 SRR15143267 SRR15143268 SRR15143291 SRR15143317 SRR15143380 SRR9982183 SRR9982229 SRR9982509 SRR9982839 SRR9982938
 do
  mkdir $f
