@@ -31,7 +31,7 @@ for f in SRR15143257 SRR15143260 SRR15143267 SRR15143268
 do
  mkdir $f
  cd $f
- /labs/mpsnyder/moqri/soft/Bismark-0.24.1/bismark --genome $hg38 --parallel $p -1 ../../trim/$f/"$f"_1_val_1.fq -2 ../../trim/$f/"$f"_2_val_2.fq
+ bismark --genome $hg38 --parallel $p -1 ../../trim/$f/"$f"_1_val_1.fq -2 ../../trim/$f/"$f"_2_val_2.fq
  /labs/mpsnyder/moqri/soft/Bismark-0.24.1/bismark_methylation_extractor "$f"_1_val_1_bismark_bt2_pe.bam --parallel $p --bedGraph --comprehensive --ucsc
  awk '{print $1,$2,$2+1,$4}' "$f"_1_val_1_bismark_bt2_pe.bismark.cov > $f.bed
  cd ..
