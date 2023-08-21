@@ -24,4 +24,18 @@ samtools sort $f.fixmate.filtered -o $f.filtered.sorted -O SAM -@16
 picard MarkDuplicates -I $f.filtered.sorted -O $f.marked.sam -METRICS_FILE $f.qc -VALIDATION_STRINGENCY LENIENT --ASSUME_SORTED true --REMOVE_DUPLICATES false
 
 samtools view -F 1804 -f 2 $f.marked.sam -o $f.dedup -O SAM -@16
+
+macs2 predictd -i IP_N2P1/IP_N2P1.dedup
+#extsize=297
+macs2 callpeak -t IP_N2P1/IP_N2P1.dedup -c Inp_N2P1/Inp_N2P1.dedup  -B --nomodel --extsize 297 --SPMR -n N2P1
+macs2 bdgcmp -t N2P1_treat_pileup.bdg -c N2P1_control_lambda.bdg -o N2P1.bdg -m logLR -p 0.00001
+
+LC_COLLATE=C
+sort -k1,1 -k2,2n N2P1.bdg > N2P1_s.bdg
+awk '$1 !~ /_/ && $1 !~ /M/' N2P1_s.bdg > N2P1_sf.bdg
+./bedGraphToBigWig N2P1_sf.bdg hg38.chrom.sizes N2P1.bw
+```
+
+```
+scp moqri@smsh11dsu-srcf-d15-35.scg.stanford.edu:/oak/stanford/scg/lab_vsebast/shared/fibroblast/vsebast/N2P1.bw .
 ```
