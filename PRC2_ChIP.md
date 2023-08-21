@@ -6,6 +6,7 @@ module add trim_galore
 module add bowtie2
 module add samtools
 module add picard/3.0.0
+module add macs2
 ```
 
 ```
