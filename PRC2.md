@@ -21,7 +21,7 @@ samtools fixmate -r $f.sorted $f.fixmate -O SAM -@16
 samtools view -F 1804 -f 2 -u $f.fixmate -o $f.fixmate.filtered -O SAM -@16 
 samtools sort $f.fixmate.filtered -o $f.filtered.sorted -O SAM -@16
 
-picard MarkDuplicates -I $f.filtered.sorted -O $f.marked -METRICS_FILE $f.qc -VALIDATION_STRINGENCY LENIENT --ASSUME_SORTED true --REMOVE_DUPLICATES false
+picard MarkDuplicates -I $f.filtered.sorted -O $f.marked.sam -METRICS_FILE $f.qc -VALIDATION_STRINGENCY LENIENT --ASSUME_SORTED true --REMOVE_DUPLICATES false
 
-samtools view -F 1804 -f 2 $f.marked -o $f.dedup -O SAM -@16
+samtools view -F 1804 -f 2 $f.marked.sam -o $f.dedup -O SAM -@16
 ```
