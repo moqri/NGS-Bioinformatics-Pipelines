@@ -1,20 +1,15 @@
 GSE186888
 ```
-for f in ./*.beta
+for f in beta/*.beta
 do 
- /labs/mpsnyder/moqri/soft/wgbs_tools/wgbstools beta2bed "$f" > "$f".bed
+ /labs/mpsnyder/moqri/soft/wgbs_tools/wgbstools beta2bed "$f" > bed/$f.bed
 done
 
-for f in ./*.bed
+for f in *.bed
 do 
- /labs/mpsnyder/moqri/soft/ucsc/liftOver $f /labs/mpsnyder/moqri/soft/ucsc/hg19ToHg38.over.chain.gz $f.hg38 $f.log
+ /labs/mpsnyder/moqri/soft/ucsc/liftOver $f /labs/mpsnyder/moqri/soft/ucsc/hg19ToHg38.over.chain.gz ../hg38/$f.hg38 ../log/$f.log
+ awk '!a[$1 $2]++ { print ;}' ../hg38/$f.hg38 > ../"${f:7:3}".bed
 done
-
-for f in hg38/*hg38
-do 
-	awk '!a[$1 $2]++ { print ;}' $f > "${f:12:3}".bed
-done
-
 
 for f in $(seq 172 194)
 do 
