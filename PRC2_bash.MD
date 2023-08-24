@@ -16,12 +16,12 @@ do
 done
 
 
-for f in $(seq 194 194)
+for f in $(seq 172 194)
 do 
  awk '{printf "%s\t%d\t%s\t%s\t%.3f\t%d\n",$1,$2,"+","CpG",$4/$5,$4+$5}' bed/$f.bed > meth/$f.meth
  awk -v OFS="\t" '{print $1, $2, $2+1, $4":"$6, $5, $3}' meth/$f.meth > meth_bed/$f.bed
  cut -f 1-3,5 meth_bed/$f.bed | /labs/mpsnyder/moqri/soft/ucsc/wigToBigWig /dev/stdin /labs/mpsnyder/moqri/soft/ucsc/hg38.chrom.sizes bw/$f.bw
- C_ALL=C sort -k 1,1 -k 3,3n -k 2,2n -k 6,6 -o meth/$f.sorted meth/sorted/$f.meth
+ C_ALL=C sort -k 1,1 -k 3,3n -k 2,2n -k 6,6 -o meth/sorted/$f.sorted meth/$f.meth
 done
 
 scp moqri@smsh11dsu-srcf-d15-35.scg.stanford.edu:/labs/vsebast/shared/PRC2_Clock/data/meth_b/geo/beta/bw/174.bw .
