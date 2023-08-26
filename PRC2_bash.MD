@@ -40,11 +40,21 @@ awk '{print $1,$2,$2+1,$5}' meth/$f.hg38 | /labs/mpsnyder/moqri/soft/ucsc/wigToB
 
 GSE117593 Willson
 ```
+pip install parallel-fastq-dump
+t=32
+for i in $(seq 36 53)
+do 
+ f="SRR75870"$i
+ parallel-fastq-dump -s $f -t $t --gzip -O .
+done
+
 module add trim-galore/0.6.7 
+module add dnmtools
+module add samtools
 p=64
 t=64
 
-for i in $(seq 22 30)
+for i in $(seq 35 35)
 do 
  f="SRR75870"$i
  trim_galore -q 0 --length 0 fastq/"$f".fastq.gz -o trim -j $p
@@ -52,6 +62,8 @@ do
  samtools sort -O bam -o map/$f.bam map/$f.sam -@ 16 -T tmp 
  dnmtools counts -c /labs/vsebast/moqri/epi10x/data/neo_hmr.fasta map/$f.bam -n -o meth/$f.meth -v
  dnmtools sym meth/$f.meth -o meth/$f.sym
- awk '{split($1,a,":"); print a[1],a[2]+$2,$3,$4,$5,$6}' meth/$f.sym > meth/$f.hg38 awk '{print $1,$2,$2+1,$5}' meth/$f.hg38 | /labs/mpsnyder/moqri/soft/ucsc/wigToBigWig /dev/stdin /labs/mpsnyder/moqri/soft/ucsc/hg38.chrom.sizes bw/$f.bw
+ awk '{split($1,a,":"); print a[1],a[2]+$2,$3,$4,$5,$6}' meth/$f.sym > meth/$f.hg38 
+ awk '{print $1,$2,$2+1,$5}' meth/$f.hg38 | /labs/mpsnyder/moqri/soft/ucsc/wigToBigWig /dev/stdin /labs/mpsnyder/moqri/soft/ucsc/hg38.chrom.sizes bw/$f.bw
 done
+
 ```
