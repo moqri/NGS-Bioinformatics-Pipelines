@@ -41,3 +41,21 @@ awk '{print $1,$2,$2+1,$5}' meth/$f.hg38 | /labs/mpsnyder/moqri/soft/ucsc/wigToB
 
 scp moqri@smsh11dsu-srcf-d15-35.scg.stanford.edu:/labs/mpsnyder/moqri/cfDNA/sam/.bw .
 ```
+
+GSE117593 Willson
+```
+trim_galore -q 0 --length 0 fastq/"$f".fastq -o trim/"$f"_trimmed.fq -j $p
+
+dnmtools abismal -i /labs/vsebast/moqri/epi10x/data/neo_hmr.idx -o map/$f.sam trim/"$f"_trimmed.fq -t $t
+
+samtools sort -O bam -o map/$f.bam map/$f.sam -@ 16 -T tmp 
+
+dnmtools counts -c /labs/vsebast/moqri/epi10x/data/neo_hmr.fasta map/$f.bam -n -o meth/$f.meth -v
+
+dnmtools sym meth/$f.meth -o meth/$f.sym
+
+awk '{split($1,a,":"); print a[1],a[2]+$2,$3,$4,$5,$6}' meth/$f.sym > meth/$f.hg38
+awk '{print $1,$2,$2+1,$5}' meth/$f.hg38 | /labs/mpsnyder/moqri/soft/ucsc/wigToBigWig /dev/stdin /labs/mpsnyder/moqri/soft/ucsc/hg38.chrom.sizes bw/$f.bw
+
+scp moqri@smsh11dsu-srcf-d15-35.scg.stanford.edu:/labs/mpsnyder/moqri/cfDNA/sam/.bw .
+```
