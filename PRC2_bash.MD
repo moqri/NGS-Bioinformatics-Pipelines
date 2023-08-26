@@ -64,6 +64,7 @@ do
  dnmtools sym meth/$f.meth -o meth/$f.sym
  awk '{split($1,a,":"); print a[1],a[2]+$2,$3,$4,$5,$6}' meth/$f.sym > meth/$f.hg38 
  awk '{print $1,$2,$2+1,$5}' meth/$f.hg38 | /labs/mpsnyder/moqri/soft/ucsc/wigToBigWig /dev/stdin /labs/mpsnyder/moqri/soft/ucsc/hg38.chrom.sizes bw/$f.bw
+ LC_ALL=C sort -k 1,1 -k 3,3n -k 2,2n -k 6,6 -o meth/$f.sorted  meth/$f.hg38
+ dnmtools roi /oak/stanford/scg/lab_mpsnyder/moqri/epi10x/blood.roi.sorted meth/$f.sorted -o hmr/$f.hmr 
 done
-
 ```
