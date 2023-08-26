@@ -19,8 +19,6 @@ do
  C_ALL=C sort -k 1,1 -k 3,3n -k 2,2n -k 6,6 -o meth/sorted/$f.sorted meth/$f.meth
 done
 
-scp moqri@smsh11dsu-srcf-d15-35.scg.stanford.edu:/labs/vsebast/shared/PRC2_Clock/data/meth_b/geo/beta/bw/174.bw .
-
 dnmtools merge 172.sorted  174.sorted  176.sorted  178.sorted  180.sorted  182.sorted  184.sorted  186.sorted  188.sorted  190.sorted  192.sorted 173.sorted  175.sorted  177.sorted  179.sorted  181.sorted  183.sorted  185.sorted  187.sorted  189.sorted  191.sorted  193.sorted 194.sorted -o merged.meth -v
 
 dnmtools hmr-rep merged.meth -o merged.hmr
@@ -38,24 +36,22 @@ dnmtools sym meth/$f.meth -o meth/$f.sym
 
 awk '{split($1,a,":"); print a[1],a[2]+$2,$3,$4,$5,$6}' meth/$f.sym > meth/$f.hg38
 awk '{print $1,$2,$2+1,$5}' meth/$f.hg38 | /labs/mpsnyder/moqri/soft/ucsc/wigToBigWig /dev/stdin /labs/mpsnyder/moqri/soft/ucsc/hg38.chrom.sizes bw/$f.bw
-
-scp moqri@smsh11dsu-srcf-d15-35.scg.stanford.edu:/labs/mpsnyder/moqri/cfDNA/sam/.bw .
 ```
 
 GSE117593 Willson
 ```
-trim_galore -q 0 --length 0 fastq/"$f".fastq -o trim/"$f"_trimmed.fq -j $p
+module add trim-galore/0.6.7 
+p=64
+t=64
 
-dnmtools abismal -i /labs/vsebast/moqri/epi10x/data/neo_hmr.idx -o map/$f.sam trim/"$f"_trimmed.fq -t $t
-
-samtools sort -O bam -o map/$f.bam map/$f.sam -@ 16 -T tmp 
-
-dnmtools counts -c /labs/vsebast/moqri/epi10x/data/neo_hmr.fasta map/$f.bam -n -o meth/$f.meth -v
-
-dnmtools sym meth/$f.meth -o meth/$f.sym
-
-awk '{split($1,a,":"); print a[1],a[2]+$2,$3,$4,$5,$6}' meth/$f.sym > meth/$f.hg38
-awk '{print $1,$2,$2+1,$5}' meth/$f.hg38 | /labs/mpsnyder/moqri/soft/ucsc/wigToBigWig /dev/stdin /labs/mpsnyder/moqri/soft/ucsc/hg38.chrom.sizes bw/$f.bw
-
-scp moqri@smsh11dsu-srcf-d15-35.scg.stanford.edu:/labs/mpsnyder/moqri/cfDNA/sam/.bw .
+for i in $(seq 22 30)
+do 
+ f="SRR75870"$i
+ trim_galore -q 0 --length 0 fastq/"$f".fastq.gz -o trim -j $p
+ dnmtools abismal -i /labs/vsebast/moqri/epi10x/data/neo_hmr.idx -o map/$f.sam trim/"$f"_trimmed.fq.gz -t $t
+ samtools sort -O bam -o map/$f.bam map/$f.sam -@ 16 -T tmp 
+ dnmtools counts -c /labs/vsebast/moqri/epi10x/data/neo_hmr.fasta map/$f.bam -n -o meth/$f.meth -v
+ dnmtools sym meth/$f.meth -o meth/$f.sym
+ awk '{split($1,a,":"); print a[1],a[2]+$2,$3,$4,$5,$6}' meth/$f.sym > meth/$f.hg38 awk '{print $1,$2,$2+1,$5}' meth/$f.hg38 | /labs/mpsnyder/moqri/soft/ucsc/wigToBigWig /dev/stdin /labs/mpsnyder/moqri/soft/ucsc/hg38.chrom.sizes bw/$f.bw
+done
 ```
