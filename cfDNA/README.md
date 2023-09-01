@@ -36,6 +36,6 @@ dnmtools abismal -i $ind -s "$f".stats "$f"_1_val_1.fq "$f"_2_val_2.fq -t $p -v 
 breast 
 ```
 trim_galore --paired -q 20 --length 50 --three_prime_clip_R1 20 --clip_R1 20 --clip_R2 20 fastq/"$f"_1.fastq.gz fastq/"$f"_2.fastq.gz -o trim -j 32
-fastqc trim/0"$f"_1_trimmed.fq.gz trim/"$f"_2_trimmed.fq.gz -t 32 -o trim/qc
+fastqc trim/"$f"_1_trimmed.fq.gz trim/"$f"_2_trimmed.fq.gz -t 32 -o trim/qc
 awk '{ total += $6; count++ } END { print total/count }' SRR8117352.hg38
 ```
