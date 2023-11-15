@@ -1,2 +1,2 @@
-https://www.webgestalt.org
-http://great.stanford.edu/public/html/
+* https://www.webgestalt.org
+* http://great.stanford.edu/public/html/
