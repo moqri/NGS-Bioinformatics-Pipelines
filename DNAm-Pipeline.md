@@ -33,3 +33,6 @@ duplicate-remover -S "$f"_stat.txt "$f"_fs.bam "$f"_fsd.sam
 methcounts -c $ref_genome -o "$f".meth "$f"_fsd.sam -v -n
 symmetric-cpgs -o "$f"_s.meth $f.meth
 ```
+From Bismark BedGraph:
+grep -v '_' BedGraph | grep 'chr[1-9][0-9]\?' # only somatic Chrs
+
